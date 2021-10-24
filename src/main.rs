@@ -1,4 +1,5 @@
 use std::fs::read_to_string;
+use std::io::Read;
 
 fn main() {
     let mut args = std::env::args();
@@ -48,7 +49,7 @@ fn run(input: String) {
             '>' => { data_pointer += 1; },
             '<' => { data_pointer -= 1; },
             '.' => { print!("{}",cells[data_pointer] as char); },
-            ',' => {},
+            ',' => { cells[data_pointer] = std::io::stdin().bytes().next().unwrap().unwrap(); },
             _ => unreachable!(),
         }
         pos += 1;
